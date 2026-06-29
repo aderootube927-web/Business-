@@ -1,6 +1,6 @@
 Hi, I'm Ismael Omar
 
-<img src=""https://komarev.com/ghpvc/?username=IsmaelOmar360&color=blue" (https://komarev.com/ghpvc/?username=IsmaelOmar360&color=blue)">
+<img src=""https://ismaelomar.com/ghpvc/?username=IsmaelOmar360&color=blue" (https://komarev.com/ghpvc/?username=IsmaelOmar360&color=blue)">
 
 Full Stack Developer | AI & SaaS Engineer
 Based in Ethiopia (EAT Timezone — well aligned with EU and US teams)
