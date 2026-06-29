@@ -1,0 +1,191 @@
+earning-platform/
+│
+├── client/
+│   ├── index.html<!DOCTYPE html>
+<html>
+<head>
+  <title>Earning Platform</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>💰 Welcome to Earning Platform</h1>
+
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+
+</body>
+</html>
+│   ├── login.html<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Login</h1>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<script src="app.js"></script>
+</body>
+</html>
+│   ├── register.html<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Register</h1>
+
+<input id="username" placeholder="Username">
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="register()">Register</button>
+
+<script src="app.js"></script>
+</body>
+</html>
+│   ├── dashboard.html<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Register</h1>
+
+<input id="username" placeholder="Username">
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button onclick="register()">Register</button>
+
+<script src="app.js"></script>
+</body>
+</html>
+│   ├── admin.html<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🛡 Admin Dashboard</h1>
+
+<p>Total Users: <span id="users">0</span></p>
+
+<button onclick="loadUsers()">Load Users</button>
+
+<script src="app.js"></script>
+</body>
+</html>
+│   ├── style.cssbody {
+  font-family: Arial;
+  text-align: center;
+  background: #f2f2f2;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 200px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+│   └── app.jslet balance = 0;
+
+function register(){
+  alert("Register clicked (connect backend later)");
+}
+
+function login(){
+  alert("Login clicked (connect backend later)");
+}
+
+function earn(){
+  balance += 1;
+  document.getElementById("balance").innerText = balance;
+}
+
+function withdraw(){
+  if(balance >= 10){
+    alert("Withdrawal requested");
+    balance = 0;
+  } else {
+    alert("Minimum $10 required");
+  }
+}
+
+function loadUsers(){
+  alert("Admin feature (backend needed)");
+}
+│
+├── server/
+│   ├── server.jsconst express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
+
+const app = express();
+app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
+.then(()=> console.log("MongoDB Connected"))
+.catch(err=> console.log(err));
+
+app.get("/", (req,res)=>{
+  res.send("API Running");
+});
+
+app.listen(5000, ()=>{
+  console.log("Server running on port 5000");
+});
+│   ├── config/
+│   │   └── db.jsnpm install
+npm start
+│   ├── models/
+│   │   └── User.jsconst mongoose = require("mongoose");
+
+const UserSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  password: String,
+  balance: { type: Number, default: 0 },
+  role: { type: String, default: "user" }
+});
+
+module.exports = mongoose.model("User", UserSchema);
+│   ├── routes/
+│   │   └── auth.js
+│   └── .envMONGO_URI=mongodb://127.0.0.1:27017/earning_platform
+JWT_SECRET=secretkey
+PORT=5000
+│
+├── package.json{
+  "name": "earning-platform",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0",
+    "dotenv": "^16.0.0"
+  }
+}
+└── README.md
